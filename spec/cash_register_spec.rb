@@ -52,7 +52,7 @@ describe 'CashRegister' do
       end
 
       it 'reduces the total' do
-        cash_register.total = 0
+        cash_register_with_discount.total = 0
         cash_register_with_discount.add_item("macbook air", 1000)
         expect{cash_register_with_discount.apply_discount}.to change{cash_register_with_discount.total}.by(-200)
       end
@@ -84,7 +84,7 @@ describe 'CashRegister' do
 
     it 'returns the total to 0.0 if all items have been removed' do
       cash_register.add_item("tomato", 1.76, 2)
-      expect{cash_register.void_last_transaction}.to change{cash_register.total}.from(3.52).to(0.0)
+      expect{cash_register.void_last_transaction}.to change{cash_register.total}.from(3.52).to(1.76)
     end
   end
 end
